@@ -6,10 +6,10 @@ class Team {
         this.name = name
         this.captianId = captianId
         this.mascotId = mascotId
-        this.squaddie1Id = squaddie1Id
-        this.squaddie2Id = squaddie2Id
-        this.squaddie3Id = squaddie3Id
-        this.squaddie4Id = squaddie4Id
+        this.squaddieOneId = squaddie1Id
+        this.squaddieTwoId = squaddie2Id
+        this.squaddieThreeId = squaddie3Id
+        this.squaddieFourId = squaddie4Id
 
         this.element = document.createElement('div')
         this.element.className = "team"
@@ -17,5 +17,5 @@ class Team {
 
         Team.all.push(this)
     }
-    
+
 }

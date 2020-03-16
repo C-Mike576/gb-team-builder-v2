@@ -7,11 +7,16 @@ class Player {
         this.card_front = card_front
         this.card_back = card_back
         this.fliped = false
+
+        Player.all.push(this)
+
         this.element = document.createElement('div')
         this.element.className = "player-info" 
 
         this.element.addEventListener('click', this.handleFlip.bind(this))
     }
+
+    static all = []
 
     handleFlip() {
         let front = document.getElementById(`f${this.id}`)
