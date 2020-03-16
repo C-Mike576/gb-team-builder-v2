@@ -1,0 +1,22 @@
+.player-card-front {
+    justify-self: center;
+    height: 24rem;
+    width: auto;
+}
+
+.player-card-back {
+    justify-self: center;
+    height: 24rem;
+    width: auto;
+}
+
+.player-info {
+    text-align: center;
+    display: inline-grid;
+    border: powderblue solid 4px;
+}
+
+button {
+    position: relative;
+    justify-self: center;
+}

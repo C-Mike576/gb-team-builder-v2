@@ -1,0 +1,21 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  captian_id: 1
+  mascot_id: 1
+  squaddie_1_id: 1
+  squaddie_2_id: 1
+  squaddie_3_id: 1
+  squaddie_4_id: 1
+  user_id: 1
+
+two:
+  name: MyString
+  captian_id: 1
+  mascot_id: 1
+  squaddie_1_id: 1
+  squaddie_2_id: 1
+  squaddie_3_id: 1
+  squaddie_4_id: 1
+  user_id: 1
