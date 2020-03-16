@@ -4,13 +4,7 @@ class PlayerAdapter{
         this.teamContainer = document.getElementById("team-container")
     }
     
-    playerList(){
-        fetch(this.baseURL)
-        .then(res => res.json())
-        .then(playerArry => {
-            playerArry
-        })
-    }
+    
 
     fetchPlayers(){
         fetch(this.baseURL)
