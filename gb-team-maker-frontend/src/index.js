@@ -6,6 +6,8 @@ document.addEventListener("DOMContentLoaded", () => {
     const newTeam = document.getElementById('new-team')
     newTeam.addEventListener('click', renderNewTeamForm)
     const formDiv = document.createElement('div')
+    let playerList = adapter.playerList()
+    
 
     
     function renderNewTeamForm() {
@@ -16,7 +18,7 @@ document.addEventListener("DOMContentLoaded", () => {
         Team Captian:
         <select>
             <option value="default" selected="selected">Choose a Captian</option>
-            ${PlayerAdapter.all.map(player => {
+            ${playerList.map(player => {
                 if (player.position == "Captian")
                 return `<option value="${player.id}">${player.name}</option>`
             }).join("")}

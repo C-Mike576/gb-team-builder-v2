@@ -4,12 +4,19 @@ class PlayerAdapter{
         this.teamContainer = document.getElementById("team-container")
     }
     
-    
+    playerList(){
+        fetch(this.baseURL)
+        .then(res => res.json())
+        .then(playerArry => {
+            playerArry
+        })
+    }
 
     fetchPlayers(){
         fetch(this.baseURL)
         .then(res => res.json())
         .then(playerArry => playerArry.forEach(playerObj => {
+            
             let player = new Player()
             
             player.id = playerObj.id
@@ -20,14 +27,10 @@ class PlayerAdapter{
             player.card_back = playerObj.card_back
             
             this.teamContainer.appendChild(player.render()) 
-            // Player.all.push(player)
-        }))   
+        }))
+          
+        
     }
     
-}
-
-
-function newFunction() {
-    return []
 }
 

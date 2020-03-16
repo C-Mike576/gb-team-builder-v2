@@ -1,5 +1,6 @@
 class Player {
 
+   
     constructor(id, name, team, position, card_front, card_back) {
         this.id = id
         this.name = name
@@ -13,10 +14,9 @@ class Player {
         this.element.className = "player-info" 
 
         this.element.addEventListener('click', this.handleFlip.bind(this))
-       
     }    
 
-    // static all = []
+    
 
     handleFlip() {
         let front = document.getElementById(`f${this.id}`)

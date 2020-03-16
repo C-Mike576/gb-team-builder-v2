@@ -1,7 +1,5 @@
 class Team {
 
-    static all = []
-
     constructor(name, captianId, mascotId, squaddie1Id, squaddie2Id, squaddie3Id, squaddie4Id) {
         this.name = name
         this.captianId = captianId
@@ -15,7 +13,6 @@ class Team {
         this.element.className = "team"
         this.element.id = `team-${this.id}`
 
-        Team.all.push(this)
     }
 
 }
