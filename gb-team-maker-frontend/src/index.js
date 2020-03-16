@@ -16,14 +16,14 @@ document.addEventListener("DOMContentLoaded", () => {
         Team Captian:
         <select>
             <option value="default" selected="selected">Choose a Captian</option>
-            ${Player.all.map(player => {
+            ${PlayerAdapter.all.map(player => {
                 if (player.position == "Captian")
                 return `<option value="${player.id}">${player.name}</option>`
             }).join("")}
         </select>
         <button>Submit Team</button>
         `
-        
+
         formContainer.appendChild(formDiv)
     }
     
