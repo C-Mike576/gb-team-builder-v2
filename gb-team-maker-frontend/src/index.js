@@ -1,7 +1,10 @@
 document.addEventListener("DOMContentLoaded", () => {
     
-    let adapter = new PlayerAdapter("http://localhost:3000/players")
-    adapter.fetchPlayers()
+    let playerAdapter = new PlayerAdapter("http://localhost:3000/players")
+    playerAdapter.fetchPlayers()
+    let teamAdapter = new TeamAdapter("http://localhost:3000/teams")
+    teamAdapter.fetchTeams()
+
     const formContainer = document.getElementById("form-container")
     const newTeam = document.getElementById('new-team')
     newTeam.addEventListener('click', renderNewTeamForm)
@@ -59,14 +62,36 @@ document.addEventListener("DOMContentLoaded", () => {
                     return `<option value="${player.id}">${player.name}</option>`
                 })}
             </select>
-            <button>Submit Team</button>
+            <button id="submit">Submit Team</button>
             `
 
             formContainer.appendChild(formDiv)
         })  
     }
     
-    
+    formDiv.addEventListener('click', submitForm)
+
+    function submitForm(e) {
+        if (e.target.tagName == "BUTTON") {
+            
+        
+            let input = formDiv.querySelector('input')
+            let selects = formDiv.querySelectorAll('select')
+            console.log(selects);
+        
+            let newTeamObj = {
+                name: input.value,
+                captian_id: parseInt(selects[0].value),
+                mascot_id: parseInt(selects[1].value),
+                squaddie_1_id: parseInt(selects[2].value),
+                squaddie_2_id: parseInt(selects[3].value),
+                squaddie_3_id: parseInt(selects[4].value),
+                squaddie_4_id: parseInt(selects[5].value),
+            }
+            teamAdapter.pushNewTeam(newTeamObj)
+            formDiv.innerHTML = ""
+        }
+    }
 
 
 

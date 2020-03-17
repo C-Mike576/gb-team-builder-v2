@@ -1,7 +1,7 @@
 class PlayerAdapter{
     constructor(baseURL) {
         this.baseURL = baseURL
-        this.teamContainer = document.getElementById("team-container")
+        this.teamContainer = document.getElementById("players-container")
     }
     
     
@@ -24,6 +24,10 @@ class PlayerAdapter{
         }))
           
         
+    }
+
+    pushNewTeam(newTeamObj){
+
     }
     
 }
