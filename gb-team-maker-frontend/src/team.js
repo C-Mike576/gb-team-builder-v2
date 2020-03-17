@@ -1,6 +1,7 @@
 class Team {
 
-    constructor(name, captianId, mascotId, squaddie1Id, squaddie2Id, squaddie3Id, squaddie4Id) {
+    constructor(id, name, captianId, mascotId, squaddie1Id, squaddie2Id, squaddie3Id, squaddie4Id) {
+        this.id = id
         this.name = name
         this.captianId = captianId
         this.mascotId = mascotId
@@ -11,7 +12,6 @@ class Team {
 
         this.element = document.createElement('div')
         this.element.className = "team"
-        this.element.id = `team-${this.id}`
 
     }
 

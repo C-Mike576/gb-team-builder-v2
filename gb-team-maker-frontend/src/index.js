@@ -2,8 +2,7 @@ document.addEventListener("DOMContentLoaded", () => {
     
     let playerAdapter = new PlayerAdapter("http://localhost:3000/players")
     playerAdapter.fetchPlayers()
-    let teamAdapter = new TeamAdapter("http://localhost:3000/teams")
-    teamAdapter.fetchTeams()
+    
 
     const formContainer = document.getElementById("form-container")
     const newTeam = document.getElementById('new-team')
@@ -92,8 +91,20 @@ document.addEventListener("DOMContentLoaded", () => {
             formDiv.innerHTML = ""
         }
     }
+    let playersButton = document.getElementById('all-players')
+    playersButton.addEventListener('click', () => {
+        document.getElementById('teams-container').innerHTML = ''
+        let playerAdapter = new PlayerAdapter("http://localhost:3000/players")
+        playerAdapter.fetchPlayers()
+    })
 
-
+    let teamsButton = document.getElementById("all-teams")
+    teamsButton.addEventListener('click', () => {
+        document.getElementById('players-container').innerHTML = ''
+        let teamAdapter = new TeamAdapter("http://localhost:3000/teams")
+        teamAdapter.fetchAndRenderTeams()
+    })
+ 
 
 
 

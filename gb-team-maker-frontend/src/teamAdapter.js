@@ -1,22 +1,32 @@
 class TeamAdapter{
     constructor(baseURL) {
-        this.baseURL
+        this.baseURL = baseURL
     }
 
-    fetchTeams(){
+    fetchAndRenderTeams(){
         fetch(this.baseURL)
         .then(res =>res.json())
         .then(teamsArry => {
-            let teamsButton = document.getElementById("all-teams")
-            teamsButton.addEventListener('click', () => {
+            teamsArry.forEach(team => {
+                let newTeam = new Team()
+                    newTeam.id = team.id
+                    newTeam.name = team.name
+                    newTeam.captianId = team.captian_id
+                    newTeam.mascotId = team.mascot_id
+                    newTeam.squaddieOneId = team.squaddie_1_id
+                    newTeam.squaddieTwoId = team.squaddie_2_id
+                    newTeam.squaddieThreeId = team.squaddie_3_id
+                    newTeam.squaddieFourId = team.squaddie_4_id
                 let teamList = document.getElementById("teams-container")
-                teamList.innerHTML = `
-                <ul>
-                ${teamsArry.map(team => {
-                    return
-                })}
+                let teamAccess = document.createElement('div')
+                teamAccess.className = "team-card"
+                teamAccess.innerHTML = `
+                <p>${newTeam.name}<p><button id="team-button-${newTeam.id}">View</button>
                 `
+                teamList.appendChild(teamAccess)
             })
         })
     }
+
+    
 }
