@@ -28,5 +28,15 @@ class TeamAdapter{
         })
     }
 
+    pushNewTeam(teamObj){
+        let configObj = {
+            method: "POST",
+            headers: {"Content-Type": "application/json", "Accepts": "application/json"},
+            body: JSON.stringify(teamObj)
+        }
+        fetch(this.baseURL, configObj)
+        .then(res => res.json())
+        .then(resObj => console.log(resObj))
+    }
     
 }
