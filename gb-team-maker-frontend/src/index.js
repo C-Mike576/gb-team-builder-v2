@@ -61,7 +61,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     return `<option value="${player.id}">${player.name}</option>`
                 })}
             </select>
-            <button id="submit">Submit Team</button>
+            <button>Submit Team</button>
             `
 
             formContainer.appendChild(formDiv)
