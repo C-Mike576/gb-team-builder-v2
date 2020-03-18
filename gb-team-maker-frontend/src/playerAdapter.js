@@ -22,13 +22,8 @@ class PlayerAdapter{
             
             this.teamContainer.appendChild(player.render()) 
         }))
-          
-        
     }
 
-    pushNewTeam(newTeamObj){
-
-    }
     
 }
 

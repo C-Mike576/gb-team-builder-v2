@@ -106,20 +106,4 @@ document.addEventListener("DOMContentLoaded", () => {
         teamListAdapter.fetchAndRenderTeams()
     })
  
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 })

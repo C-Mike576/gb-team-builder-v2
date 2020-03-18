@@ -4,6 +4,7 @@ class TeamAdapter{
     }
 
     fetchAndRenderTeams(){
+        document.getElementById('players-container').innerHTML = ''
         fetch(this.baseURL)
         .then(res =>res.json())
         .then(teamsArry => {
@@ -59,7 +60,7 @@ class TeamAdapter{
         }
         fetch(this.baseURL, configObj)
         .then(res => res.json())
-        .then(resObj => console.log(resObj))
+        .then(this.fetchAndRenderTeams())
     }
     
 }
