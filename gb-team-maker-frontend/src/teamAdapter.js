@@ -5,9 +5,13 @@ class TeamAdapter{
 
     fetchAndRenderTeams(){
         document.getElementById('players-container').innerHTML = ''
+        document.getElementById('teams-container').innerHTML = ""
+        console.log("start fetch")
         fetch(this.baseURL)
         .then(res =>res.json())
         .then(teamsArry => {
+            console.log(teamsArry);
+            
             teamsArry.forEach(team => {
                 let newTeam = new Team()
                     newTeam.id = team.id
@@ -59,8 +63,8 @@ class TeamAdapter{
             body: JSON.stringify(teamObj)
         }
         fetch(this.baseURL, configObj)
-        .then(res => res.json())
-        .then(this.fetchAndRenderTeams())
+        .then(res => console.log(res.json()))
+        .then(this.fetchAndRenderTeams.bind(this))
     }
     
 }

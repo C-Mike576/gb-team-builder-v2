@@ -87,6 +87,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 squaddie_4_id: parseInt(selects[5].value),
             }
             teamAdapter.pushNewTeam(newTeamObj)
+            document.getElementById('teams-container').innerHTML = ""
             formDiv.innerHTML = ""
         }
     }
