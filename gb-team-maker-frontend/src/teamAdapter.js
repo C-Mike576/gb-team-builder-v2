@@ -21,9 +21,32 @@ class TeamAdapter{
                 let teamAccess = document.createElement('div')
                 teamAccess.className = "team-card"
                 teamAccess.innerHTML = `
-                <p>${newTeam.name}<p><button id="team-button-${newTeam.id}">View</button>
+                <p>${newTeam.name}</p><button id="team-button-${newTeam.id}">View</button>
                 `
                 teamList.appendChild(teamAccess)
+
+                let teamIdArray = [newTeam.captianId, newTeam.mascotId, newTeam.squaddieOneId, newTeam.squaddieTwoId, newTeam.squaddieThreeId, newTeam.squaddieFourId]
+                let teamContainer = document.getElementById('players-container')
+                let viewTeamButton = document.getElementById(`team-button-${newTeam.id}`)
+                viewTeamButton.addEventListener('click', () => {
+                    teamContainer.innerHTML = ""
+                    fetch("http://localhost:3000/players")
+                    .then(res => res.json())
+                    .then(playerArry => playerArry.forEach(playerObj => {
+                       
+                            let player = new Player()
+            
+                            player.id = playerObj.id
+                            player.name = playerObj.name
+                            player.team = playerObj.team
+                            player.position = playerObj.position
+                            player.card_front = playerObj.card_front
+                            player.card_back = playerObj.card_back
+                        if (teamIdArray.includes(player.id)) {
+                            teamContainer.appendChild(player.render()) 
+                        }
+                    }))
+                })
             })
         })
     }

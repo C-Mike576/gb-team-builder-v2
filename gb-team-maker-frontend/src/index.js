@@ -92,14 +92,16 @@ document.addEventListener("DOMContentLoaded", () => {
     }
     let playersButton = document.getElementById('all-players')
     playersButton.addEventListener('click', () => {
-        document.getElementById('teams-container').innerHTML = ''
+        document.getElementById('players-container').innerHTML = ""
+        document.getElementById('teams-container').innerHTML = ""
         let playerAdapter = new PlayerAdapter("http://localhost:3000/players")
         playerAdapter.fetchPlayers()
     })
 
     let teamsButton = document.getElementById("all-teams")
     teamsButton.addEventListener('click', () => {
-        document.getElementById('players-container').innerHTML = ''
+        document.getElementById('teams-container').innerHTML = ""
+        document.getElementById('players-container').innerHTML = ""
         let teamListAdapter = new TeamAdapter("http://localhost:3000/teams")
         teamListAdapter.fetchAndRenderTeams()
     })
