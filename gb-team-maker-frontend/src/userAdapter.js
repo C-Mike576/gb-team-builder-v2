@@ -4,6 +4,7 @@ class UserAdapter{
     }
 
     fetchUsers(){
+        const userList = document.getElementById("users-container")
         fetch(this.baseURL)
         .then(res =>res.json())
         .then(userArry => {
@@ -11,14 +12,14 @@ class UserAdapter{
                 let newUser = new User()
                     newUser.id = user.id
                     newUser.username = user.username
-                let userList = document.getElementById("users-container")
+                
                 let userAccess = document.createElement('div')
                 userAccess.className = "user-card"
                 userAccess.innerHTML = `
                 <p>${newUser.username}</p><button id="user-${newUser.id}">View Teams</button>
                 `
                 userList.appendChild(userAccess)
-                
+
             })
         })
     }

@@ -1,10 +1,13 @@
 document.addEventListener("DOMContentLoaded", () => {
     
-    let playerAdapter = new PlayerAdapter("http://localhost:3000/players")
+    const playerAdapter = new PlayerAdapter("http://localhost:3000/players")
     playerAdapter.fetchPlayers()
-    let teamAdapter = new TeamAdapter("http://localhost:3000/teams")
-    let userAdapter = new UserAdapter("http://localhost:3000/users")
+    const teamAdapter = new TeamAdapter("http://localhost:3000/teams")
+    const userAdapter = new UserAdapter("http://localhost:3000/users")
 
+    const usersContainer = document.getElementById('users-container')
+    const playersContainer = document.getElementById('players-container')
+    const teamsContainer = document.getElementById('teams-container')
     const formContainer = document.getElementById("form-container")
     const newTeam = document.getElementById('new-team')
     newTeam.addEventListener('click', renderNewTeamForm)
@@ -29,9 +32,10 @@ document.addEventListener("DOMContentLoaded", () => {
         if (e.target.tagName == "BUTTON") {
             let input = userForm.querySelector('input')
             let newUserObj = {
-                username: input[0]
+                username: input.value
             }
             userAdapter.pushNewUser(newUserObj)
+            
             formContainer.innerHTML = ""
         }
     }
@@ -115,24 +119,31 @@ document.addEventListener("DOMContentLoaded", () => {
                 squaddie_4_id: parseInt(selects[5].value),
             }
             teamAdapter.pushNewTeam(newTeamObj)
-            document.getElementById('teams-container').innerHTML = ""
+            teamsContainer.innerHTML = ""
             formDiv.innerHTML = ""
         }
     }
     let playersButton = document.getElementById('all-players')
     playersButton.addEventListener('click', () => {
-        document.getElementById('players-container').innerHTML = ""
-        document.getElementById('teams-container').innerHTML = ""
+        playersContainer.innerHTML = ""
+        teamsContainer.innerHTML = ""
+        usersContainer.innerHTML = ""
         let playerAdapter = new PlayerAdapter("http://localhost:3000/players")
         playerAdapter.fetchPlayers()
     })
 
     let teamsButton = document.getElementById("all-teams")
     teamsButton.addEventListener('click', () => {
-        document.getElementById('teams-container').innerHTML = ""
-        document.getElementById('players-container').innerHTML = ""
-        let teamListAdapter = new TeamAdapter("http://localhost:3000/teams")
-        teamListAdapter.fetchAndRenderTeams()
+        teamsContainer.innerHTML = ""
+        playersContainer.innerHTML = ""
+        usersContainer.innerHTML = ""
+        teamAdapter.fetchAndRenderTeams()
     })
- 
+    let usersButton = document.getElementById("all-users")
+    usersButton.addEventListener('click', () => {
+        usersContainer.innerHTML = ""
+        playersContainer.innerHTML = ""
+        teamsContainer.innerHTML = ""
+        userAdapter.fetchUsers()
+    })
 })
