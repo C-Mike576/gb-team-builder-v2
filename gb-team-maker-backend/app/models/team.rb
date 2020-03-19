@@ -1,5 +1,5 @@
 class Team < ApplicationRecord
-    # belongs_to :user
+    belongs_to :user
     belongs_to :captian, class_name: "Player"
     belongs_to :mascot, class_name: "Player"
     belongs_to :squaddie_1, class_name: "Player"
