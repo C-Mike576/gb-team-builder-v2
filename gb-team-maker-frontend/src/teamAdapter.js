@@ -61,7 +61,7 @@ class TeamAdapter{
             body: JSON.stringify(teamObj)
         }
         fetch(this.baseURL, configObj)
-        .then(res => console.log(res.json()))
+        .then(res => res.json())
         .then(this.fetchAndRenderTeams.bind(this))
     }
     

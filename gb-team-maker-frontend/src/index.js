@@ -14,8 +14,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const formDiv = document.createElement('div')
     const newUser = document.getElementById('new-user')
     newUser.addEventListener('click', newUserForm)
-    const userForm = document.createElement('div')
-    
+    const userForm = document.createElement('div')    
 
     function newUserForm() {
         formContainer.innerHTML = ""
@@ -42,6 +41,7 @@ document.addEventListener("DOMContentLoaded", () => {
     
     
     function renderNewTeamForm() {
+        formContainer.innerHTML = ''
         fetch("http://localhost:3000/players")
         .then(res => res.json())
         .then(playerArry => {
@@ -93,6 +93,19 @@ document.addEventListener("DOMContentLoaded", () => {
                 })}
             </select>
             <br>
+            Username:
+            <select>
+            <option value="default" selected="selected">Choose who uses this team</option>
+            ${fetch("http://localhost:3000/users")
+            .then(res => res.json())
+            .then(users => {
+                console.log(users)
+                users.map(user => {
+                   return `<option value="${user.id}">${user.username}</option>`
+                })
+            })}
+            </select>
+            <br>
             <button>Submit Team</button>
             `
 
@@ -110,21 +123,24 @@ document.addEventListener("DOMContentLoaded", () => {
             let selects = formDiv.querySelectorAll('select')
         
             let newTeamObj = {
-                name: input.value,
+                name: input[0].value,
                 captian_id: parseInt(selects[0].value),
                 mascot_id: parseInt(selects[1].value),
                 squaddie_1_id: parseInt(selects[2].value),
                 squaddie_2_id: parseInt(selects[3].value),
                 squaddie_3_id: parseInt(selects[4].value),
                 squaddie_4_id: parseInt(selects[5].value),
+                user_id: parseInt(selects[6].value)
             }
-            teamAdapter.pushNewTeam(newTeamObj)
+            console.log(newTeamObj);
+            
             teamsContainer.innerHTML = ""
             formDiv.innerHTML = ""
         }
     }
     let playersButton = document.getElementById('all-players')
     playersButton.addEventListener('click', () => {
+        formContainer.innerHTML= ""
         playersContainer.innerHTML = ""
         teamsContainer.innerHTML = ""
         usersContainer.innerHTML = ""
@@ -134,6 +150,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     let teamsButton = document.getElementById("all-teams")
     teamsButton.addEventListener('click', () => {
+        formContainer.innerHTML= ""
         teamsContainer.innerHTML = ""
         playersContainer.innerHTML = ""
         usersContainer.innerHTML = ""
@@ -141,6 +158,7 @@ document.addEventListener("DOMContentLoaded", () => {
     })
     let usersButton = document.getElementById("all-users")
     usersButton.addEventListener('click', () => {
+        formContainer.innerHTML= ""
         usersContainer.innerHTML = ""
         playersContainer.innerHTML = ""
         teamsContainer.innerHTML = ""

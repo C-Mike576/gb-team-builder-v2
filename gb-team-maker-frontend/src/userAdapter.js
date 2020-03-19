@@ -5,6 +5,9 @@ class UserAdapter{
 
     fetchUsers(){
         const userList = document.getElementById("users-container")
+        document.getElementById('teams-container').innerHTML = ''
+        document.getElementById('players-container').innerHTML = ''
+        document.getElementById('users-container').innerHTML = ''
         fetch(this.baseURL)
         .then(res =>res.json())
         .then(userArry => {
@@ -31,7 +34,7 @@ class UserAdapter{
             body: JSON.stringify(userObj)
         }
         fetch(this.baseURL, configObj)
-        .then(res => console.log(res.json()))
+        .then(res => res.json())
         .then(this.fetchUsers.bind(this))
     }
 }
