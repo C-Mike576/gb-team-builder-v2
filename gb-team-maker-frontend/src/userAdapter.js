@@ -22,8 +22,14 @@ class UserAdapter{
                 <p>${newUser.username}</p><button id="user-${newUser.id}">View Teams</button>
                 `
                 userList.appendChild(userAccess)
-
+                let viewTeamsButton = document.getElementById(`user-${newUser.id}`)
+                viewTeamsButton.addEventListener('click', () => {
+                    const teamList = document.getElementById('teams-container')
+                    teamList.innerHTML = ''
+                    
+                })
             })
+            
         })
     }
 

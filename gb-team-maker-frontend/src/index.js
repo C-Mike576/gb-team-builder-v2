@@ -42,6 +42,9 @@ document.addEventListener("DOMContentLoaded", () => {
     
     function renderNewTeamForm() {
         formContainer.innerHTML = ''
+        fetch("http://localhost:3000/users")
+            .then(res => res.json())
+            .then(users => {
         fetch("http://localhost:3000/players")
         .then(res => res.json())
         .then(playerArry => {
@@ -95,22 +98,17 @@ document.addEventListener("DOMContentLoaded", () => {
             <br>
             Username:
             <select>
-            <option value="default" selected="selected">Choose who uses this team</option>
-            ${fetch("http://localhost:3000/users")
-            .then(res => res.json())
-            .then(users => {
-                console.log(users)
-                users.map(user => {
-                   return `<option value="${user.id}">${user.username}</option>`
-                })
-            })}
+                <option value="default" selected="selected">Choose who uses this team</option>
+                ${users.map(user => {
+                    return `<option value="${user.id}">${user.username}</option>`
+                })}
             </select>
             <br>
             <button>Submit Team</button>
             `
 
             formContainer.appendChild(formDiv)
-        })  
+        })})  
     }
     
     formDiv.addEventListener('click', submitForm)
@@ -123,7 +121,7 @@ document.addEventListener("DOMContentLoaded", () => {
             let selects = formDiv.querySelectorAll('select')
         
             let newTeamObj = {
-                name: input[0].value,
+                name: input.value,
                 captian_id: parseInt(selects[0].value),
                 mascot_id: parseInt(selects[1].value),
                 squaddie_1_id: parseInt(selects[2].value),
@@ -132,7 +130,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 squaddie_4_id: parseInt(selects[5].value),
                 user_id: parseInt(selects[6].value)
             }
-            console.log(newTeamObj);
+            teamAdapter.pushNewTeam(newTeamObj)
             
             teamsContainer.innerHTML = ""
             formDiv.innerHTML = ""

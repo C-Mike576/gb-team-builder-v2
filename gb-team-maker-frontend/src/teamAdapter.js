@@ -24,7 +24,9 @@ class TeamAdapter{
                 let teamAccess = document.createElement('div')
                 teamAccess.className = "team-card"
                 teamAccess.innerHTML = `
-                <p>${newTeam.name}</p><button id="team-button-${newTeam.id}">View</button>
+                <p>${newTeam.name}</p>
+                
+                <button id="team-button-${newTeam.id}">View</button>
                 `
                 teamList.appendChild(teamAccess)
 

@@ -7,4 +7,5 @@ class TeamSerializer
   belongs_to :squaddie_2
   belongs_to :squaddie_3
   belongs_to :squaddie_4
+  belongs_to :user
 end
