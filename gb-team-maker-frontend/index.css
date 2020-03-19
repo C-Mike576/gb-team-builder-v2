@@ -26,3 +26,9 @@ button {
     display: inline-grid;
     border: powderblue solid 4px;
 }
+
+.user-card{
+    text-align: center;
+    display: inline-grid;
+    border: powderblue solid 4px;
+}

@@ -3,11 +3,38 @@ document.addEventListener("DOMContentLoaded", () => {
     let playerAdapter = new PlayerAdapter("http://localhost:3000/players")
     playerAdapter.fetchPlayers()
     let teamAdapter = new TeamAdapter("http://localhost:3000/teams")
+    let userAdapter = new UserAdapter("http://localhost:3000/users")
 
     const formContainer = document.getElementById("form-container")
     const newTeam = document.getElementById('new-team')
     newTeam.addEventListener('click', renderNewTeamForm)
     const formDiv = document.createElement('div')
+    const newUser = document.getElementById('new-user')
+    newUser.addEventListener('click', newUserForm)
+    const userForm = document.createElement('div')
+    
+
+    function newUserForm() {
+        formContainer.innerHTML = ""
+        userForm.innerHTML = `
+            Username:
+            <input type="text" />
+            <button id="send-user">Submit</button>
+        `
+        formContainer.appendChild(userForm)
+    }
+    userForm.addEventListener('click', submitUser)
+
+    function submitUser(e) {
+        if (e.target.tagName == "BUTTON") {
+            let input = userForm.querySelector('input')
+            let newUserObj = {
+                username: input[0]
+            }
+            userAdapter.pushNewUser(newUserObj)
+            formContainer.innerHTML = ""
+        }
+    }
     
     
     function renderNewTeamForm() {
@@ -61,6 +88,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     return `<option value="${player.id}">${player.name}</option>`
                 })}
             </select>
+            <br>
             <button>Submit Team</button>
             `
 
