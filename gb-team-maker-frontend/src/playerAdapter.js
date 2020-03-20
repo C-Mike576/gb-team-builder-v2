@@ -24,6 +24,13 @@ class PlayerAdapter{
         }))
     }
 
+    fetchMostUsed(){
+        // fetch(this.baseURL + "/most-used-player")
+        // .then(res => res.json())
+        // .then(mostPlayer => new Player(mostPlayer.render()))
+        console.log('made it to the function')
+    }
+
     
 }
 

@@ -165,4 +165,12 @@ document.addEventListener("DOMContentLoaded", () => {
         teamsContainer.innerHTML = ""
         userAdapter.fetchUsers()
     })
+    let mostUsedButton = document.getElementById("most-used")
+    mostUsedButton.addEventListener('click', () => {
+        formContainer.innerHTML= ""
+        usersContainer.innerHTML = ""
+        playersContainer.innerHTML = ""
+        teamsContainer.innerHTML = ""
+        playerAdapter.fetchMostUsed()
+    })
 })

@@ -11,6 +11,7 @@ class PlayersController < ApplicationController
     end
 
     def most_used
-        
+        player = Player.find(Player.most_used_player)
+        render json: player.to_json
     end
 end
