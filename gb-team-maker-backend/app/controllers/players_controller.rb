@@ -9,4 +9,8 @@ class PlayersController < ApplicationController
         player = Player.find(params[:id])
         render json: player.to_json
     end
+
+    def most_used
+        
+    end
 end

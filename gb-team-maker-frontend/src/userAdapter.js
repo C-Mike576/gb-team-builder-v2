@@ -11,22 +11,33 @@ class UserAdapter{
         fetch(this.baseURL)
         .then(res =>res.json())
         .then(userArry => {
-            userArry.forEach(user => {
+            userArry.data.forEach(user => {
                 let newUser = new User()
+
                     newUser.id = user.id
-                    newUser.username = user.username
+                    newUser.username = user.attributes.username
                 
                 let userAccess = document.createElement('div')
                 userAccess.className = "user-card"
                 userAccess.innerHTML = `
-                <p>${newUser.username}</p><button id="user-${newUser.id}">View Teams</button>
+                <p>${newUser.username}</p><button onclick="event.stopPropagation()" id="user-${newUser.id}">View Teams</button>
                 `
                 userList.appendChild(userAccess)
                 let viewTeamsButton = document.getElementById(`user-${newUser.id}`)
                 viewTeamsButton.addEventListener('click', () => {
-                    const teamList = document.getElementById('teams-container')
+                    let teamList = document.getElementById('teams-container')
                     teamList.innerHTML = ''
-                    
+                    user.relationships.teams.data.forEach(userTeam => {
+                        fetch(`http://localhost:3000/teams/${userTeam.id}`)
+                        .then(res => res.json())
+                        .then(teamObj => {
+                            let newUserTeam = document.createElement('div')
+                            newUserTeam.innerHTML = `
+                            <p>${teamObj.name}</p>
+                            `
+                            teamList.appendChild(newUserTeam)
+                        })
+                    })
                 })
             })
             

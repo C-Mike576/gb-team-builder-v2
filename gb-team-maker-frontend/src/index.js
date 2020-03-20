@@ -14,7 +14,9 @@ document.addEventListener("DOMContentLoaded", () => {
     const formDiv = document.createElement('div')
     const newUser = document.getElementById('new-user')
     newUser.addEventListener('click', newUserForm)
-    const userForm = document.createElement('div')    
+    const userForm = document.createElement('div')
+    
+    
 
     function newUserForm() {
         formContainer.innerHTML = ""
@@ -35,13 +37,13 @@ document.addEventListener("DOMContentLoaded", () => {
             }
             userAdapter.pushNewUser(newUserObj)
             
-            formContainer.innerHTML = ""
+            userForm.innerHTML = ""
         }
     }
     
     
     function renderNewTeamForm() {
-        formContainer.innerHTML = ''
+        //formContainer.innerHTML = ''
         fetch("http://localhost:3000/users")
             .then(res => res.json())
             .then(users => {
@@ -99,8 +101,8 @@ document.addEventListener("DOMContentLoaded", () => {
             Username:
             <select>
                 <option value="default" selected="selected">Choose who uses this team</option>
-                ${users.map(user => {
-                    return `<option value="${user.id}">${user.username}</option>`
+                ${users.data.map(user => {
+                    return `<option value="${user.id}">${user.attributes.username}</option>`
                 })}
             </select>
             <br>
@@ -130,6 +132,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 squaddie_4_id: parseInt(selects[5].value),
                 user_id: parseInt(selects[6].value)
             }
+            
             teamAdapter.pushNewTeam(newTeamObj)
             
             teamsContainer.innerHTML = ""

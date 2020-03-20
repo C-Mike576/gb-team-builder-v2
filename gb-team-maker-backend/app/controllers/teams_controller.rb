@@ -12,6 +12,6 @@ class TeamsController < ApplicationController
 
     def show
         team = Team.find_by_id(params[:id])
-        render json: TeamSerializer.new(team)
+        render json: team.to_json
     end
 end

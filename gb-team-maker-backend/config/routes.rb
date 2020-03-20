@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
-  resources :users
-  resources :teams
+  
+  get '/most-used-player', to: 'players#most_used'
+
+  resources :users, only: [:show, :create, :index]
+  resources :teams, only: [:show, :create, :index]
   resources :players, only: [:show, :index]
 end
