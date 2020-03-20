@@ -25,10 +25,23 @@ class PlayerAdapter{
     }
 
     fetchMostUsed(){
-        // fetch(this.baseURL + "/most-used-player")
-        // .then(res => res.json())
-        // .then(mostPlayer => new Player(mostPlayer.render()))
-        console.log('made it to the function')
+        fetch("http://localhost:3000/most-used-player")
+        .then(res => res.json())
+        .then(mostPlayer => {
+            console.log(mostPlayer);
+            
+            let player = new Player()
+
+            player.id = mostPlayer.id    
+            player.name = mostPlayer.name
+            player.team = mostPlayer.team
+            player.position = mostPlayer.position
+            player.card_front = mostPlayer.card_front
+            player.card_back = mostPlayer.card_back  
+            
+            this.teamContainer.appendChild(player.render())
+        
+        })
     }
 
     

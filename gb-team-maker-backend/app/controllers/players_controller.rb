@@ -1,5 +1,10 @@
 class PlayersController < ApplicationController
 
+    def most_used
+        player = Player.find(Player.most_used_player)
+        render json: player.to_json
+    end
+
     def index
         players = Player.all 
         render json: players.to_json
@@ -10,8 +15,5 @@ class PlayersController < ApplicationController
         render json: player.to_json
     end
 
-    def most_used
-        player = Player.find(Player.most_used_player)
-        render json: player.to_json
-    end
+    
 end
