@@ -20,6 +20,7 @@ class PlayerAdapter{
             player.card_front = playerObj.card_front
             player.card_back = playerObj.card_back
             
+            
             this.teamContainer.appendChild(player.render()) 
         }))
     }

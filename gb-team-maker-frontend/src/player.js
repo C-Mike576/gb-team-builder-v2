@@ -1,13 +1,7 @@
 class Player {
 
    
-    constructor(id, name, team, position, card_front, card_back) {
-        this.id = id
-        this.name = name
-        this.team = team
-        this.position = position
-        this.card_front = card_front
-        this.card_back = card_back
+    constructor() {
         this.fliped = false
 
         this.element = document.createElement('div')

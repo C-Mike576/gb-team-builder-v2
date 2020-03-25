@@ -5,9 +5,7 @@ class UserAdapter{
 
     fetchUsers(){
         const userList = document.getElementById("users-container")
-        document.getElementById('teams-container').innerHTML = ''
-        document.getElementById('players-container').innerHTML = ''
-        document.getElementById('users-container').innerHTML = ''
+        
         fetch(this.baseURL)
         .then(res =>res.json())
         .then(userArry => {
@@ -27,17 +25,24 @@ class UserAdapter{
                 viewTeamsButton.addEventListener('click', () => {
                     let teamList = document.getElementById('teams-container')
                     teamList.innerHTML = ''
+                    let usersTeams = []
                     user.relationships.teams.data.forEach(userTeam => {
-                        fetch(`http://localhost:3000/teams/${userTeam.id}`)
-                        .then(res => res.json())
-                        .then(teamObj => {
-                            let newUserTeam = document.createElement('div')
-                            newUserTeam.innerHTML = `
-                            <p>${teamObj.name}</p>
-                            `
+                        usersTeams.push(parseInt(userTeam.id))
+                    })    
+                    fetch(`http://localhost:3000/teams`)
+                    .then(res => res.json())
+                    .then(teamArry => {      
+                        teamArry.forEach(teamObj=> { 
+                        let newUserTeam = document.createElement('div')
+                        newUserTeam.innerHTML = `
+                            <p id=${teamObj.id}>${teamObj.name}</p>
+                        `        
+                        if (usersTeams.includes(teamObj.id)) {
                             teamList.appendChild(newUserTeam)
-                        })
+                        }
                     })
+                })
+                    
                 })
             })
             

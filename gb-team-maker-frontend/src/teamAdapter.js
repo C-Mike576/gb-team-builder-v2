@@ -47,6 +47,7 @@ class TeamAdapter{
                             player.position = playerObj.position
                             player.card_front = playerObj.card_front
                             player.card_back = playerObj.card_back
+                            
                         if (teamIdArray.includes(player.id)) {
                             teamContainer.appendChild(player.render()) 
                         }
